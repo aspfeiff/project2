@@ -1,43 +1,135 @@
-    <div class="row">
-        <div class="col-xs-4 col-md-4"></div>
-        <div class="col-xs-4 col-md-4">
-            <h2 class="text-center">My Custom Recipe Generator</h2>
-            <form class="create-update-form" action="recipes/create" method="POST">
+<div class = "master-container">
+
+	<div class = "recipe">	
+	items stocked
+		<ul>
+			{{#each stock}}
+			<li>
+				{{this.item_name}}
+                    <form action="update/{{this.id}}?_method=PUT" method="POST">
+                        <button class="btn btn-primary" type="submit">Use item</button>
+                    </form>	
+                    <form action="delete/{{this.id}}?_method=DELETE" method="POST">
+                        <button class="btn btn-primary" type="submit">Delete item</button>
+                    </form>                    
+            </li>
+            {{/each}}
+        </ul>
+		items to use
+		<ul>
+			{{#each stock}}
+			{{#if this.include}}
+				<li>
+					{{this.item_name}}
+                    <form action="return/{{this.id}}?_method=PUT" method="POST">
+                        <button class="btn btn-primary" type="submit">Finished using</button>
+                    </form>						
+				</li>
+			{{/if}}
+			{{/each}}
+		</ul>
+
+	</div>
+	<div class = "fridge">
+		<div id= 'meat'>
+			<img src = 'http://clipartix.com/wp-content/uploads/2016/08/Steak-black-and-white-clipart-clipart-kid.jpg' style = 'width: 100px; height: 100px'>
+		</div>
+		<div id = 'dairy'>
+			<img src = 'https://static.abcteach.com/free_preview/s/swisscheese_gs_p.png' style = 'width: 100px; height: 100px'>
+		</div>
+		<div id = 'vegetable'>
+			<img src = 'http://laoblogger.com/images/mix-vegetables-clipart-black-and-white-10.jpg' style = 'width: 100px; height: 100px'>
+		</div>
+		<div id = 'fruit'>
+			<img src = 'http://wikiclipart.com/wp-content/uploads/2017/05/Fruit-black-and-white-fruit-clipart-black-and-white-clipartfest.png' style = 'width: 100px; height: 100px'>
+		</div>
+		<div class = 'items'>
+
+		fridge
+			<ul>
+				{{#each stock}}
+					{{#if this.fridge}}
+						<li>
+							{{this.item_name}}
+						</li>
+					{{/if}}
+				{{/each}}
+			</ul>
+
+		</div>
+	</div>
+		<div class = "freezer">
+			<div class = 'items'>
+			freezer
+{{!-- 				<ul>
+					{{#each stock}}
+						{{#if this.fridge}}
+							<li>
+								{{this.item_name}}
+							</li>
+						{{/if}}
+					{{/each}}
+				</ul> --}}
+			</div>
+	</div>
+		<div class = "clock">
+		<div class = 'items'>
+			<div >clock</div>
+		</div>
+	</div>
+	<div class = "spice">
+		<div class = 'items'>
+			<div >Spice Rack</div>
+            <form class="create-update-form" action="create" method="POST">
 
                 <div class="form-group">
-                    <label for="ca">Ingredients to add:</label>
-                    <input type="text" id="ca" name="name" placeholder="Seperate ingredients with a comma">
+                    <label for="ca">Item:</label>
+                    <input type="text" id="ca" name="name" placeholder="Add food">
+                </div>
+                <div class="form-group">
+                    <label for="ca">category:</label>
+                    <input type="text" id="ca" name="cat" placeholder="Add food">
+                </div>
+                <div class="form-group">
+                    <label for="ca">place:</label>
+                    <input type="text" id="ca" name="place" placeholder="cupboard">
                 </div>
 
-                <button class="btn btn-secondary" type="submit">Add ingredients</button>
+                <button class="btn btn-secondary" type="submit">Add</button>
             </form>
-        </div>
-        <div class="col-xs-4 col-md-4"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-1 col-md-1"></div>
-        <div class="col-xs-3 col-md-3">
-            <h2 class="text-center">Ingredients in My Fridge</h2>
             <ul>
-                {{#each recipes}} 
-                {{#unless this.myFridge}}
-                <li>
-                    {{this.ingredient_name}}
-                    <form action="recipes/delete/{{this.id}}?_method=DELETE" method="POST">
-                        <button class="btn btn-primary" type="submit">Remove</button>
-                    </form>
-                </li>
-                {{/unless}}
-                {{/each}}
-            </ul>
-        </div>
-        
-        <br>
+				{{#each stock}}
+					{{#if this.spice}}
+						<li>
+							{{this.item_name}}
+						</li>
+					{{/if}}
+				{{/each}}
+			</ul>
 
-        <div class="text-center col-xs-4 col-md-4">
-            <img class="img-responsive" id="burger-picture" src="/assets/images/Fridge.jpg">
-        </div>
-    </div>
-
-    
+		</div>
+	</div>
+	<div class = "pantry">
+		<div id = 'grain'>
+			<img src = 'https://media.istockphoto.com/vectors/wheat-plant-grain-sack-drawing-vector-id518481309'style = 'width: 100px; height: 100px'>
+		</div> 
+		<div id = 'bean'>
+			<img src = 'http://wikiclipart.com/wp-content/uploads/2016/12/Jelly-bean-clip-art-black-beans-clipart.jpg'style = 'width: 100px; height: 100px'>
+		</div>
+		<div class = 'items'>
+		pantry
+		<input type="text" id="co" name="name" placeholder="food">
+		<button class="btn btn-secondary" type="submit">Add item</button>
+		</div>
+			<ul>
+				{{#each stock}}
+					{{#if this.pantry}}
+						<li>
+							{{this.item_name}}
+						</li>
+					{{/if}}
+				{{/each}}
+			</ul>
+	</div>
+ 
+ </div>
