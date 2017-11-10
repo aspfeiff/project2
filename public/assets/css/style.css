@@ -38,8 +38,16 @@ body {
   height: 100%;
   /*padding: 20px;*/
   /*margin-left: 30px;*/
-  background: teal;
+  background: white;
   border: 1px solid #eee;
+}
+
+#list {
+  background: white;
+}
+
+#use {
+  background: #8080803b;
 }
 
 .fridge {
@@ -62,9 +70,8 @@ body {
 
 .spice {
   position: absolute;
-  left: 23.7%;
-  width: 12.5%;
-  height: 26.5%;
+  left: 23.5%;
+  height: 60%;
   margin-top: 7.8%;
   text-align: center; 
 }
@@ -140,4 +147,38 @@ body {
 #grain img {
   position: absolute;
   left: 80px;
+}
+
+#bean {
+  position: relative;
+}
+
+#bean img {
+  position: absolute;
+  left: 217px;
+}
+
+#pantryInput {
+  margin-top: 27%;
+}
+
+#fridgeInput {
+  margin-top: 35%;
+  margin-left: 10%;
+}
+
+#oil {
+  position: relative;
+}
+
+#oil img {
+  position: absolute;
+  left: 80px;
+  margin-top: 26%;
+}
+
+#nut {
+  position: absolute;
+  left: 217px;
+  margin-top: 26%;
 }

@@ -20,11 +20,33 @@ router.get("/", function(req, res) {
   });
 });
 
-router.post("/create", function(req, res) {
+router.post("/createspice", function(req, res) {
   stock.create([
-    "item_name", "category", "storage", "include"
+    "item_name", "spice"
   ], [
-    req.body.name, req.body.cat, req.body.place, 0
+    req.body.name, 1
+  ], function(result) {
+    // Send back the ID of the new quote
+    res.redirect('/');
+  });
+});
+
+router.post("/createfridge", function(req, res) {
+  stock.create([
+    "item_name", "fridge"
+  ], [
+    req.body.name, 1
+  ], function(result) {
+    // Send back the ID of the new quote
+    res.redirect('/');
+  });
+});
+
+router.post("/createpantry", function(req, res) {
+  stock.create([
+    "item_name", "pantry"
+  ], [
+    req.body.name, 1
   ], function(result) {
     // Send back the ID of the new quote
     res.redirect('/');

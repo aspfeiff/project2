@@ -1,33 +1,29 @@
 <div class = "master-container">
 
-	<div class = "recipe">	
-	items stocked
-		<ul>
-			{{#each stock}}
-			<li>
-				{{this.item_name}}
-                    <form action="update/{{this.id}}?_method=PUT" method="POST">
-                        <button class="btn btn-primary" type="submit">Use item</button>
-                    </form>	
-                    <form action="delete/{{this.id}}?_method=DELETE" method="POST">
-                        <button class="btn btn-primary" type="submit">Delete item</button>
-                    </form>                    
-            </li>
-            {{/each}}
-        </ul>
-		items to use
-		<ul>
-			{{#each stock}}
-			{{#if this.include}}
-				<li>
-					{{this.item_name}}
-                    <form action="return/{{this.id}}?_method=PUT" method="POST">
-                        <button class="btn btn-primary" type="submit">Finished using</button>
-                    </form>						
-				</li>
-			{{/if}}
-			{{/each}}
-		</ul>
+	<div class = "recipe">
+			<button class="btn btn-secondary" id ="fridgeView" type="submit">view fridge items</button>
+
+			<button class="btn btn-secondary" id ="pantryView" type="submit">view pantry items</button>
+
+			<button class="btn btn-secondary" id ="spiceView" type="submit">view spices</button>
+
+		<div id = 'list'>
+		</div>
+		<div id ='use'>
+			<ul>
+				{{#each stock}}
+				{{#if this.include}}
+					<li>
+						{{this.item_name}}
+	                    <form action="return/{{this.id}}?_method=PUT" method="POST">
+	                        <button class="btn btn-primary" type="submit">Finished using</button>
+	                    </form>						
+					</li>
+				{{/if}}
+				{{/each}}
+			</ul>
+			<button class="btn btn-primary" id ="findRecipe" type="submit">Find Recipes!</button>
+		</div>
 
 	</div>
 	<div class = "fridge">
@@ -44,69 +40,34 @@
 			<img src = 'http://wikiclipart.com/wp-content/uploads/2017/05/Fruit-black-and-white-fruit-clipart-black-and-white-clipartfest.png' style = 'width: 100px; height: 100px'>
 		</div>
 		<div class = 'items'>
-
-		fridge
-			<ul>
-				{{#each stock}}
-					{{#if this.fridge}}
-						<li>
-							{{this.item_name}}
-						</li>
-					{{/if}}
-				{{/each}}
-			</ul>
-
+			<div id = "fridgeInput">
+	            <form class="create-update-form" action="createfridge" method="POST">
+	                <div class="form-group">
+	                    <label for="cd"></label>
+	                    <input type="text" id="cd" name="name" placeholder="Add item to Fridge">
+	                    <button class="btn btn-secondary" type="submit">Add</button>
+	                </div>
+	                
+	            </form>
+	        </div>
 		</div>
 	</div>
 		<div class = "freezer">
-			<div class = 'items'>
-			freezer
-{{!-- 				<ul>
-					{{#each stock}}
-						{{#if this.fridge}}
-							<li>
-								{{this.item_name}}
-							</li>
-						{{/if}}
-					{{/each}}
-				</ul> --}}
-			</div>
 	</div>
 		<div class = "clock">
-		<div class = 'items'>
-			<div >clock</div>
+		<div class = 'items'>			
 		</div>
 	</div>
 	<div class = "spice">
 		<div class = 'items'>
-			<div >Spice Rack</div>
-            <form class="create-update-form" action="create" method="POST">
+            <form class="create-update-form" action="createspice" method="POST">
 
                 <div class="form-group">
-                    <label for="ca">Item:</label>
-                    <input type="text" id="ca" name="name" placeholder="Add food">
+                    <label for="ca"></label>
+                    <input type="text" id="ca" name="name" placeholder="Add Spice">
+                    <button class="btn btn-secondary" type="submit">Add</button>
                 </div>
-                <div class="form-group">
-                    <label for="ca">category:</label>
-                    <input type="text" id="ca" name="cat" placeholder="Add food">
-                </div>
-                <div class="form-group">
-                    <label for="ca">place:</label>
-                    <input type="text" id="ca" name="place" placeholder="cupboard">
-                </div>
-
-                <button class="btn btn-secondary" type="submit">Add</button>
             </form>
-            <ul>
-				{{#each stock}}
-					{{#if this.spice}}
-						<li>
-							{{this.item_name}}
-						</li>
-					{{/if}}
-				{{/each}}
-			</ul>
-
 		</div>
 	</div>
 	<div class = "pantry">
@@ -116,20 +77,45 @@
 		<div id = 'bean'>
 			<img src = 'http://wikiclipart.com/wp-content/uploads/2016/12/Jelly-bean-clip-art-black-beans-clipart.jpg'style = 'width: 100px; height: 100px'>
 		</div>
-		<div class = 'items'>
-		pantry
-		<input type="text" id="co" name="name" placeholder="food">
-		<button class="btn btn-secondary" type="submit">Add item</button>
+		<div id = 'oil'>
+			<img src = 'http://www.frugalabundance.com/wp-content/uploads/2015/08/VEGETABLEOILSB.jpg' style = 'width: 100px; height: 100px'>
 		</div>
-			<ul>
-				{{#each stock}}
-					{{#if this.pantry}}
-						<li>
-							{{this.item_name}}
-						</li>
-					{{/if}}
-				{{/each}}
-			</ul>
-	</div>
- 
+
+		<div id = 'nut'>
+			<img src = 'http://cliparts101.com/files/89/599B31877A953A9B8179ED8CB4A3813C/Peanut_Walking.png' style = 'width: 100px; height: 100px'>
+		</div>
+		<div class = 'items'>
+			<div id = 'pantryInput'>
+	            <form class="create-update-form" action="createpantry" method="POST">
+	                <div class="form-group">
+	                    <label for="cb"></label>
+	                    <input type="text" id="cb" name="name" placeholder="Add food to Pantry">
+	                    <button class="btn btn-secondary" type="submit">Add</button>
+	                </div>
+	                
+	            </form>
+	        </div>
+		</div>
+	</div> 
  </div>
+
+<script type = 'text/javascript'>
+	$('#fridgeView').on('click', function(event){
+		event.preventDefault();
+		$('#list').empty();
+		$('#list').html('<ul> {{#each stock}} {{#if this.fridge}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>')
+	});
+
+	$('#pantryView').on('click', function(event){
+		event.preventDefault();
+		$('#list').empty();
+		$('#list').html('<ul> {{#each stock}} {{#if this.pantry}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>')
+	});
+
+	$('#spiceView').on('click', function(event){
+		event.preventDefault();
+		$('#list').empty();
+		$('#list').html('<ul> {{#each stock}} {{#if this.spice}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>')
+	});	
+
+</script>
