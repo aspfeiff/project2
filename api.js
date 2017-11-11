@@ -1,5 +1,6 @@
 //submit array of ingredients into an API request
 
+
 $("#findRecipe").on("click", function(event) {
 
   event.preventDefault();
@@ -13,10 +14,7 @@ $("#findRecipe").on("click", function(event) {
        
         url:queryURL,
         method: 'GET'
-      });
-
-    });
-
+      })
 
       .done(function(response) {
 
@@ -24,7 +22,7 @@ $("#findRecipe").on("click", function(event) {
         
         console.log(response)
 
-         var newInfo = $('<div class="new-info col-xs-12">' 
+        var newInfo = $('<div class="new-info col-xs-12">' 
           + "Title: " + response.results.title 
           + "<br>" 
           + response.results.thumbnail
@@ -35,10 +33,8 @@ $("#findRecipe").on("click", function(event) {
           );
   
         $('#recipes').append(newInfo);
-      });
+      };
 
       
       });
-    
-  
-      
+    })
