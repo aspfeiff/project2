@@ -15,7 +15,7 @@ $("#findRecipe").on("click", function(event) {
         method: 'GET'
       });
 
-    });
+    })
 
 
       .done(function(response) {

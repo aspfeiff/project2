@@ -11,6 +11,13 @@ router.get("/", function(req, res) {
   }
 });
 
+router.get("/api/recipes", function(req, res) {
+  recipe.all(function(recipe_data){
+      console.log(recipe_data);
+      res.render("index", {recipe_data});
+  })
+})
+
 router.get('/recipes', function(req,res) {
   if(!req.user){
     res.redirect('/');
