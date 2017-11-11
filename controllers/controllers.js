@@ -25,6 +25,13 @@ router.get('/recipes', function(req,res) {
   }
 });
 
+ router.get("/api/recipes", function(req, res) {
+  recipe.all(function(item_name){
+      console.log(item_name);
+      res.render("index", {item_name});
+  })
+});
+
 router.post("/createspice", function(req, res) {
   recipe.create([
     "item_name", "spice"
