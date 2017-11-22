@@ -12,9 +12,11 @@ router.get("/", function(req, res) {
 });
 
 router.get("/api/recipes", function(req, res) {
-  recipe.all(function(recipe_data){
-      console.log(recipe_data);
-      res.render("index", {recipe_data});
+  recipe.all(function(item_name){
+
+      console.log("Controller.js - item name: " + item_name);
+//  look here
+      return res.json({item_name: item_name});
   })
 })
 
@@ -26,7 +28,7 @@ router.get('/recipes', function(req,res) {
       var hbsObject = {
         stock: data
       };
-      res.render('index', {stock : data, user: req.user});
+      res.render('index', {stock: data, user: req.user});
       console.log(hbsObject);
     });
   }
